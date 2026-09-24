@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Professional Agent Registration</title>
+<style>
+:root{--b:#1d4ed8;--b2:#2563eb;--bl:#eff6ff;--bd:#bfdbfe;--tx:#0f172a;--mu:#64748b}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Ethiopic","Nyala",sans-serif;background:#f8fafc;color:var(--tx)}
+.bar{position:sticky;top:0;z-index:100;background:#1e3a8a;color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.bar .in{max-width:760px;margin:auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:17px}
+.lg{display:flex;background:rgba(255,255,255,.18);border-radius:999px;padding:3px}
+.lg button{margin:0;background:transparent;color:#fff;padding:7px 14px;border-radius:999px;font-size:14px}
+.lg button.on{background:#fff;color:var(--b)}
+.top{background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;padding:30px 20px 70px;text-align:center}
+.top h1{margin:0 0 6px;font-size:28px}.top p{margin:0;opacity:.9}
+.wrap{max-width:760px;margin:-46px auto 40px;padding:0 16px}
+.sec{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:20px 22px;margin-bottom:16px;box-shadow:0 4px 14px rgba(37,99,235,.08)}
+.sec h3{margin:0 0 6px;color:var(--b);font-size:17px;display:flex;align-items:center;gap:10px}
+.sec h3 span{background:var(--b2);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex:none}
+label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600;color:#1e293b}label i{color:#dc2626;font-style:normal}
+input,select{width:100%;padding:12px 13px;border-radius:10px;border:1.5px solid var(--bd);background:#fff;color:var(--tx);font-size:16px;outline:none}
+input:focus,select:focus{border-color:var(--b2);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.g3,.g2{grid-template-columns:1fr}}
+.cam{background:var(--bl);border:2px dashed var(--bd);border-radius:12px;padding:12px;text-align:center}
+.cam small{display:block;color:var(--mu);margin-bottom:6px}
+video,canvas.pv{width:100%;max-height:280px;border-radius:8px;background:#000;display:none}
+button{padding:10px 18px;border:0;border-radius:10px;background:var(--b2);color:#fff;font-size:15px;font-weight:600;cursor:pointer;margin:8px 4px 0}
+button.g{background:#fff;color:var(--b);border:1.5px solid var(--b2)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.ok{width:100%;padding:15px;font-size:18px;margin:6px 0 0;background:linear-gradient(135deg,#1d4ed8,#2563eb)}
+#pad{width:140px;height:140px;margin:10px auto;border-radius:50%;border:4px solid var(--b2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:58px;position:relative;overflow:hidden;user-select:none;touch-action:none;cursor:pointer}
+#bar{position:absolute;left:0;bottom:0;width:100%;height:0;background:rgba(37,99,235,.35)}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:400}.chk input{width:auto;margin-top:3px}
+#msg{margin-top:14px;text-align:center;min-height:22px;font-weight:600}.err{color:#dc2626}.good{color:#16a34a}
+/* phone with country code */
+.phone{display:flex;gap:8px;position:relative}
+.cc{position:relative;flex:none}
+.ccb{margin:0;display:flex;align-items:center;gap:8px;background:#fff;color:var(--tx);border:1.5px solid var(--bd);padding:0 12px;height:100%;min-height:47px;border-radius:10px;font-weight:600;font-size:15px}
+.fl{width:24px;height:18px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px #cbd5e1;flex:none}
+.fb{display:inline-flex;align-items:center;justify-content:center;font-size:10px;background:#e2e8f0;color:#334155}
+.ccp{display:none;position:absolute;top:calc(100% + 6px);left:0;width:330px;max-width:calc(100vw - 56px);background:#fff;border:1.5px solid var(--bd);border-radius:12px;box-shadow:0 12px 30px rgba(15,23,42,.2);z-index:60;padding:8px}
+.ccp.open{display:block}
+.ccl{list-style:none;margin:8px 0 0;padding:0;max-height:260px;overflow-y:auto}
+.ccl li{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:15px}
+.ccl li:hover,.ccl li.on{background:var(--bl)}
+.ccl .n{flex:1}.ccl .d{color:var(--mu);font-size:14px}.ccl .none{color:var(--mu);cursor:default}
+</style></head><body>
+
+<div class="bar"><div class="in"><span class="brand" data-t>Agent Registration</span>
+<div class="lg"><button type="button" data-l="en">English</button><button type="button" data-l="am">አማርኛ</button><button type="button" data-l="om">Afaan Oromoo</button></div></div></div>
+
+<div class="top"><h1 data-t>Professional Agent Registration</h1><p data-t>Complete all sections. Fields marked * are required.</p></div>
+<div class="wrap">
+
+<div class="sec"><h3><span>1</span><b data-t>Personal information</b></h3>
+<div class="g3">
+<div><label><span data-t>First name</span> <i>*</i></label><input id="fn"></div>
+<div><label><span data-t>Second name</span> <i>*</i></label><input id="sn"></div>
+<div><label><span data-t>Last name</span> <i>*</i></label><input id="ln"></div></div>
+<div class="g3">
+<div><label><span data-t>Gender</span> <i>*</i></label><select id="gender"><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+<div><label><span data-t>Date of birth</span> <i>*</i></label><input id="dob" type="date"></div>
+<div><label><span data-t>Nationality</span> <i>*</i></label><input id="nat" value="Ethiopian"></div></div></div>
+
+<div class="sec"><h3><span>2</span><b data-t>Contact</b></h3>
+<div class="g2">
+<div><label><span data-t>Phone number</span> <i>*</i></label>
+<div class="phone" id="phw"><div class="cc"><button type="button" class="ccb"><span class="ccf"></span><span class="dc"></span><span>▾</span></button>
+<div class="ccp"><input class="ccs" data-tp="Search country..." autocomplete="off"><ul class="ccl"></ul></div></div>
+<input id="ph" type="tel" inputmode="numeric" placeholder="9XX XXX XXX"></div></div>
+<div><label><span data-t>Email</span></label><input id="email" type="email" placeholder="name@example.com"></div></div></div>
+
+<div class="sec"><h3><span>3</span><b data-t>Address</b></h3>
+<div class="g2">
+<div><label><span data-t>Region</span> <i>*</i></label><select id="region"><option value="">Select region</option>
+<option>Addis Ababa</option><option>Afar</option><option>Amhara</option><option>Benishangul-Gumuz</option><option>Central Ethiopia</option><option>Dire Dawa</option><option>Gambela</option><option>Harari</option><option>Oromia</option><option>Sidama</option><option>Somali</option><option>South Ethiopia</option><option>South West Ethiopia</option><option>Tigray</option><option>Outside Ethiopia</option></select></div>
+<div><label><span data-t>Zone / Sub-city</span> <i>*</i></label><input id="zone"></div>
+<div><label><span data-t>Woreda</span> <i>*</i></label><input id="woreda"></div>
+<div><label><span data-t>City / Town</span> <i>*</i></label><input id="city"></div></div>
+<label><span data-t>Kebele / House number / Street</span></label><input id="addr"></div>
+
+<div class="sec"><h3><span>4</span><b data-t>Identification</b></h3>
+<div class="g2">
+<div><label><span data-t>ID type</span> <i>*</i></label><select id="idtype"><option value="">Select</option><option>National ID (Fayda)</option><option>Kebele ID</option><option>Passport</option><option>Driving license</option><option>Other</option></select></div>
+<div><label><span data-t>ID number</span> <i>*</i></label><input id="idno"></div></div>
+
+<label><span data-t>ID picture — FRONT side</span> <i>*</i></label>
+<div class="cam" id="c_idf"><small data-t>Place the front of your ID inside the frame</small><video playsinline muted></video><canvas class="pv"></canvas>
+<button type="button" class="g" data-a="start" data-t>Open camera</button><button type="button" data-a="snap" data-t="Capture front" disabled></button></div>
+
+<label><span data-t>ID picture — BACK side</span> <i>*</i></label>
+<div class="cam" id="c_idb"><small data-t>Now turn the ID over and capture the back</small><video playsinline muted></video><canvas class="pv"></canvas>
+<button type="button" class="g" data-a="start" data-t>Open camera</button><button type="button" data-a="snap" data-t="Capture back" disabled></button></div>
+
+<label><span data-t>Your picture (selfie)</span> <i>*</i></label>
+<div class="cam" id="c_face"><small data-t>Look straight at the camera</small><video playsinline muted></video><canvas class="pv"></canvas>
+<button type="button" class="g" data-a="start" data-t>Open camera</button><button type="button" data-a="snap" data-t="Capture photo" disabled></button></div></div>
+
+<div class="sec"><h3><span>5</span><b data-t>Professional information</b></h3>
+<div class="g2">
+<div><label><span data-t>Profession / Occupation</span> <i>*</i></label><input id="prof"></div>
+<div><label><span data-t>Agent category</span> <i>*</i></label><select id="cat"><option value="">Select</option><option>Sales agent</option><option>Insurance agent</option><option>Real estate agent</option><option>Travel agent</option><option>Financial / Banking agent</option><option>Mobile money agent</option><option>Other</option></select></div>
+<div><label><span data-t>Education level</span> <i>*</i></label><select id="edu"><option value="">Select</option><option>Primary</option><option>Secondary</option><option>Certificate</option><option>Diploma</option><option>Bachelor's degree</option><option>Master's degree</option><option>PhD</option></select></div>
+<div><label><span data-t>Years of experience</span> <i>*</i></label><input id="exp" type="number" min="0" max="60"></div></div>
+<label><span data-t>Languages spoken</span></label><input id="lang" data-tp="Amharic, English, Afaan Oromo...">
+</div>
+
+<div class="sec"><h3><span>6</span><b data-t>Emergency contact</b></h3>
+<div class="g2">
+<div><label><span data-t>Full name</span> <i>*</i></label><input id="ename"></div>
+<div><label><span data-t>Phone</span> <i>*</i></label>
+<div class="phone" id="ephw"><div class="cc"><button type="button" class="ccb"><span class="ccf"></span><span class="dc"></span><span>▾</span></button>
+<div class="ccp"><input class="ccs" data-tp="Search country..." autocomplete="off"><ul class="ccl"></ul></div></div>
+<input id="ephone" type="tel" inputmode="numeric" placeholder="9XX XXX XXX"></div></div></div></div>
+
+<div class="sec"><h3><span>7</span><b data-t>Fingerprint</b></h3>
+<div class="cam"><div id="pad"><div id="bar"></div><span style="position:relative">☝️</span></div><div id="fpt" data-t="Press and hold for 2 seconds"></div></div></div>
+
+<div class="sec"><label class="chk" style="margin:0"><input type="checkbox" id="agree"><span data-t>I confirm that all information provided is true and correct.</span></label>
+<button type="button" class="ok" id="go" data-t>Submit registration</button>
+<div id="msg"></div></div>
+</div>
+
+<script type="module">
+import {neon} from "https://esm.sh/@neondatabase/serverless@0.10.4";
+const DB_URL="postgresql://neondb_owner:npg_Viy8oeGpqO0E@ep-flat-fog-b4t8a0yq-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require";
+const $=id=>document.getElementById(id);
+
+/* ---------- translations (English text is the key; stored data stays English) ---------- */
+const D={
+am:{
+"Agent Registration":"የወኪል ምዝገባ","Professional Agent Registration":"የባለሙያ ወኪል ምዝገባ",
+"Complete all sections. Fields marked * are required.":"ሁሉንም ክፍሎች ይሙሉ። በ * የተመለከቱ መስኮች ግዴታ ናቸው።",
+"Personal information":"የግል መረጃ","Contact":"የመገናኛ መረጃ","Address":"አድራሻ","Identification":"መታወቂያ",
+"Professional information":"የሙያ መረጃ","Emergency contact":"የአደጋ ጊዜ ተጠሪ","Fingerprint":"የጣት አሻራ",
+"First name":"የመጀመሪያ ስም","Second name":"የአባት ስም","Last name":"የአያት ስም","Gender":"ፆታ","Date of birth":"የትውልድ ቀን",
+"Nationality":"ዜግነት","Phone number":"ስልክ ቁጥር","Email":"ኢሜይል","Region":"ክልል","Zone / Sub-city":"ዞን / ክፍለ ከተማ",
+"Woreda":"ወረዳ","City / Town":"ከተማ","Kebele / House number / Street":"ቀበሌ / የቤት ቁጥር / መንገድ",
+"ID type":"የመታወቂያ አይነት","ID number":"የመታወቂያ ቁጥር","ID picture — FRONT side":"የመታወቂያ ፎቶ — ፊት ለፊት",
+"ID picture — BACK side":"የመታወቂያ ፎቶ — ጀርባ","Your picture (selfie)":"የእርስዎ ፎቶ (ሴልፊ)",
+"Profession / Occupation":"ሙያ / የሥራ መስክ","Agent category":"የወኪል ምድብ","Education level":"የትምህርት ደረጃ",
+"Years of experience":"የሥራ ልምድ (በዓመት)","Languages spoken":"የሚናገሯቸው ቋንቋዎች","Full name":"ሙሉ ስም","Phone":"ስልክ",
+"Place the front of your ID inside the frame":"የመታወቂያዎን ፊት ለፊት በፍሬሙ ውስጥ ያስቀምጡ",
+"Now turn the ID over and capture the back":"አሁን መታወቂያውን ገልብጠው ጀርባውን ያንሱ",
+"Look straight at the camera":"ካሜራውን በቀጥታ ይመልከቱ",
+"Open camera":"ካሜራ ክፈት","Restart":"እንደገና ጀምር","Retake":"እንደገና አንሳ","Capture front":"ፊት ለፊቱን አንሳ",
+"Capture back":"ጀርባውን አንሳ","Capture photo":"ፎቶ አንሳ","Submit registration":"ምዝገባውን አስገባ",
+"Select":"ይምረጡ","Male":"ወንድ","Female":"ሴት","Select region":"ክልል ይምረጡ",
+"Addis Ababa":"አዲስ አበባ","Afar":"አፋር","Amhara":"አማራ","Benishangul-Gumuz":"ቤኒሻንጉል-ጉሙዝ","Central Ethiopia":"ማዕከላዊ ኢትዮጵያ",
+"Dire Dawa":"ድሬዳዋ","Gambela":"ጋምቤላ","Harari":"ሐረሪ","Oromia":"ኦሮሚያ","Sidama":"ሲዳማ","Somali":"ሶማሌ",
+"South Ethiopia":"ደቡብ ኢትዮጵያ","South West Ethiopia":"ደቡብ ምዕራብ ኢትዮጵያ","Tigray":"ትግራይ","Outside Ethiopia":"ከኢትዮጵያ ውጭ",
+"National ID (Fayda)":"ብሔራዊ መታወቂያ (ፋይዳ)","Kebele ID":"የቀበሌ መታወቂያ","Passport":"ፓስፖርት","Driving license":"መንጃ ፈቃድ","Other":"ሌላ",
+"Sales agent":"የሽያጭ ወኪል","Insurance agent":"የኢንሹራንስ ወኪል","Real estate agent":"የሪል እስቴት ወኪል","Travel agent":"የጉዞ ወኪል",
+"Financial / Banking agent":"የፋይናንስ / ባንክ ወኪል","Mobile money agent":"የሞባይል ገንዘብ ወኪል",
+"Primary":"አንደኛ ደረጃ","Secondary":"ሁለተኛ ደረጃ","Certificate":"ሰርተፊኬት","Diploma":"ዲፕሎማ","Bachelor's degree":"የመጀመሪያ ዲግሪ",
+"Master's degree":"ሁለተኛ ዲግሪ","PhD":"ዶክትሬት (ፒኤችዲ)",
+"Press and hold for 2 seconds":"ለ2 ሰከንድ ተጭነው ይያዙ","Scanning...":"በመቃኘት ላይ...","Fingerprint captured ✓":"የጣት አሻራ ተወስዷል ✓",
+"I confirm that all information provided is true and correct.":"የሰጠሁት መረጃ ሁሉ እውነትና ትክክል መሆኑን አረጋግጣለሁ።",
+"is required.":"ያስፈልጋል።","is invalid.":"ልክ አይደለም።",
+"Please capture the FRONT of your ID.":"እባክዎ የመታወቂያዎን ፊት ለፊት ያንሱ።","Please capture the BACK of your ID.":"እባክዎ የመታወቂያዎን ጀርባ ያንሱ።",
+"Please capture your own picture.":"እባክዎ የራስዎን ፎቶ ያንሱ።","Please complete the fingerprint scan.":"እባክዎ የጣት አሻራ ቅኝቱን ያጠናቅቁ።",
+"Please confirm the declaration.":"እባክዎ መግለጫውን ያረጋግጡ።","Submitting...":"በማስገባት ላይ...",
+"Registered successfully! Your number:":"በተሳካ ሁኔታ ተመዝግበዋል! ቁጥርዎ፦","Failed:":"አልተሳካም፦","Camera error:":"የካሜራ ችግር፦",
+"Search country...":"አገር ይፈልጉ...","No results":"ምንም ውጤት የለም","Amharic, English, Afaan Oromo...":"አማርኛ፣ እንግሊዝኛ፣ ኦሮምኛ..."
+},
+om:{
+"Agent Registration":"Galmee Ejentii","Professional Agent Registration":"Galmee Ejentii Ogummaa",
+"Complete all sections. Fields marked * are required.":"Kutaalee hunda guutaa. Iddoowwan * mallattoo qaban dirqama.",
+"Personal information":"Odeeffannoo dhuunfaa","Contact":"Odeeffannoo quunnamtii","Address":"Teessoo","Identification":"Waraqaa eenyummaa",
+"Professional information":"Odeeffannoo ogummaa","Emergency contact":"Nama yeroo balaa waamamu","Fingerprint":"Suuqii quba",
+"First name":"Maqaa jalqabaa","Second name":"Maqaa abbaa","Last name":"Maqaa akaakayyuu","Gender":"Saala","Date of birth":"Guyyaa dhaloota",
+"Nationality":"Lammummaa","Phone number":"Lakkoofsa bilbilaa","Email":"Imeelii","Region":"Naannoo","Zone / Sub-city":"Godina / Naannoo magaalaa",
+"Woreda":"Aanaa","City / Town":"Magaalaa","Kebele / House number / Street":"Ganda / Lakkoofsa mana / Karaa",
+"ID type":"Gosa waraqaa eenyummaa","ID number":"Lakkoofsa waraqaa eenyummaa","ID picture — FRONT side":"Suuraa waraqaa eenyummaa — fuula duraa",
+"ID picture — BACK side":"Suuraa waraqaa eenyummaa — duubaa","Your picture (selfie)":"Suuraa keessan (selfii)",
+"Profession / Occupation":"Ogummaa / Hojii","Agent category":"Gosa ejentii","Education level":"Sadarkaa barnootaa",
+"Years of experience":"Waggaa muuxannoo","Languages spoken":"Afaanota dubbattan","Full name":"Maqaa guutuu","Phone":"Bilbila",
+"Place the front of your ID inside the frame":"Fuula duraa waraqaa eenyummaa keessanii kutaa keessa kaa'aa",
+"Now turn the ID over and capture the back":"Amma waraqaa eenyummaa deebisaatii duubaa suuraa kaasaa",
+"Look straight at the camera":"Kaameraa kallattiin ilaalaa",
+"Open camera":"Kaameraa banuu","Restart":"Irra deebi'ii jalqabi","Retake":"Irra deebi'ii kaasi","Capture front":"Fuula duraa kaasi",
+"Capture back":"Duubaa kaasi","Capture photo":"Suuraa kaasi","Submit registration":"Galmee ergi",
+"Select":"Filadhaa","Male":"Dhiira","Female":"Dubartii","Select region":"Naannoo filadhaa",
+"Addis Ababa":"Finfinnee","Afar":"Affar","Amhara":"Amaara","Benishangul-Gumuz":"Benishaangul-Gumuz","Central Ethiopia":"Giddugaleessa Itiyoophiyaa",
+"Dire Dawa":"Dirre Dawaa","Gambela":"Gaambeellaa","Harari":"Hararii","Oromia":"Oromiyaa","Sidama":"Sidaamaa","Somali":"Somaalee",
+"South Ethiopia":"Kibba Itiyoophiyaa","South West Ethiopia":"Kibba Lixa Itiyoophiyaa","Tigray":"Tigraay","Outside Ethiopia":"Alaa Itiyoophiyaa",
+"National ID (Fayda)":"Waraqaa eenyummaa biyyaalessaa (Faaydaa)","Kebele ID":"Waraqaa eenyummaa ganda","Passport":"Paaspoortii",
+"Driving license":"Ragaa mirga konkolaachisuu","Other":"Kan biraa",
+"Sales agent":"Ejentii gurgurtaa","Insurance agent":"Ejentii inshuraansii","Real estate agent":"Ejentii daldala manaa","Travel agent":"Ejentii imala",
+"Financial / Banking agent":"Ejentii faayinaansii / baankii","Mobile money agent":"Ejentii maallaqa bilbilaa",
+"Primary":"Sadarkaa tokkoffaa","Secondary":"Sadarkaa lammaffaa","Certificate":"Sertifikeetii","Diploma":"Dipiloomaa",
+"Bachelor's degree":"Digrii jalqabaa","Master's degree":"Digrii lammaffaa","PhD":"Doktoreetii (PhD)",
+"Press and hold for 2 seconds":"Sekondii 2f cuqaasaatii qabaa","Scanning...":"Sakatta'aa jira...","Fingerprint captured ✓":"Suuqiin quba fudhatameera ✓",
+"I confirm that all information provided is true and correct.":"Odeeffannoon ani kenne hundi dhugaa fi sirrii ta'uu mirkaneessa.",
+"is required.":"barbaachisaadha.","is invalid.":"sirrii miti.",
+"Please capture the FRONT of your ID.":"Maaloo fuula duraa waraqaa eenyummaa keessanii kaasaa.",
+"Please capture the BACK of your ID.":"Maaloo duubaa waraqaa eenyummaa keessanii kaasaa.",
+"Please capture your own picture.":"Maaloo suuraa keessan kaasaa.","Please complete the fingerprint scan.":"Maaloo sakatta'iinsa suuqii quba xumuraa.",
+"Please confirm the declaration.":"Maaloo labsii mirkaneessaa.","Submitting...":"Ergaa jira...",
+"Registered successfully! Your number:":"Milkaa'inaan galmooftaniirtu! Lakkoofsi keessan:","Failed:":"Hin milkoofne:","Camera error:":"Rakkoo kaameraa:",
+"Search country...":"Biyya barbaadi...","No results":"Bu'aan hin argamne","Amharic, English, Afaan Oromo...":"Afaan Amaaraa, Ingliffaa, Afaan Oromoo..."
+}};
+let lang="en";try{lang=localStorage.getItem("lang")||"en"}catch(e){}
+if(lang!=="en"&&!D[lang])lang="en";
+const tr=s=>(lang!=="en"&&D[lang][s])||s;
+const ap=el=>{el.textContent=tr(el.dataset.t)};
+const setT=(el,en)=>{el.dataset.t=en;ap(el)};
+
+// prepare option values (English stays as the stored value) and translation keys
+document.querySelectorAll("option").forEach(o=>{const en=o.textContent.trim();if(!o.hasAttribute("value"))o.value=en;o.dataset.t=en});
+document.querySelectorAll("[data-t]").forEach(e=>{if(!e.dataset.t)e.dataset.t=e.textContent.trim()});
+
+/* ---------- countries: ISO code + dial code ---------- */
+const CC="AF:93,AL:355,DZ:213,AS:1684,AD:376,AO:244,AI:1264,AG:1268,AR:54,AM:374,AW:297,AU:61,AT:43,AZ:994,BS:1242,BH:973,BD:880,BB:1246,BY:375,BE:32,BZ:501,BJ:229,BM:1441,BT:975,BO:591,BQ:599,BA:387,BW:267,BR:55,IO:246,VG:1284,BN:673,BG:359,BF:226,BI:257,KH:855,CM:237,CA:1,CV:238,KY:1345,CF:236,TD:235,CL:56,CN:86,CO:57,KM:269,CG:242,CD:243,CK:682,CR:506,CI:225,HR:385,CU:53,CW:599,CY:357,CZ:420,DK:45,DJ:253,DM:1767,DO:1809,EC:593,EG:20,SV:503,GQ:240,ER:291,EE:372,SZ:268,ET:251,FK:500,FO:298,FJ:679,FI:358,FR:33,GF:594,PF:689,GA:241,GM:220,GE:995,DE:49,GH:233,GI:350,GR:30,GL:299,GD:1473,GP:590,GU:1671,GT:502,GG:44,GN:224,GW:245,GY:592,HT:509,HN:504,HK:852,HU:36,IS:354,IN:91,ID:62,IR:98,IQ:964,IE:353,IM:44,IL:972,IT:39,JM:1876,JP:81,JE:44,JO:962,KZ:7,KE:254,KI:686,XK:383,KW:965,KG:996,LA:856,LV:371,LB:961,LS:266,LR:231,LY:218,LI:423,LT:370,LU:352,MO:853,MG:261,MW:265,MY:60,MV:960,ML:223,MT:356,MH:692,MQ:596,MR:222,MU:230,YT:262,MX:52,FM:691,MD:373,MC:377,MN:976,ME:382,MS:1664,MA:212,MZ:258,MM:95,NA:264,NR:674,NP:977,NL:31,NC:687,NZ:64,NI:505,NE:227,NG:234,NU:683,NF:672,KP:850,MK:389,MP:1670,NO:47,OM:968,PK:92,PW:680,PS:970,PA:507,PG:675,PY:595,PE:51,PH:63,PL:48,PT:351,PR:1787,QA:974,RE:262,RO:40,RU:7,RW:250,BL:590,SH:290,KN:1869,LC:1758,MF:590,PM:508,VC:1784,WS:685,SM:378,ST:239,SA:966,SN:221,RS:381,SC:248,SL:232,SG:65,SX:1721,SK:421,SI:386,SB:677,SO:252,ZA:27,KR:82,SS:211,ES:34,LK:94,SD:249,SR:597,SE:46,CH:41,SY:963,TW:886,TJ:992,TZ:255,TH:66,TL:670,TG:228,TK:690,TO:676,TT:1868,TN:216,TR:90,TM:993,TC:1649,TV:688,VI:1340,UG:256,UA:380,AE:971,GB:44,US:1,UY:598,UZ:998,VU:678,VA:379,VE:58,VN:84,WF:681,EH:212,YE:967,ZM:260,ZW:263,AX:358";
+const COUNTRIES=CC.split(",").map(x=>{const p=x.split(":");return{iso:p[0],dial:p[1],name:p[0],en:p[0]}});
+function names(){
+  let f=null,fe=null;
+  try{f=new Intl.DisplayNames([lang],{type:"region"})}catch(e){}
+  try{fe=new Intl.DisplayNames(["en"],{type:"region"})}catch(e){}
+  COUNTRIES.forEach(c=>{
+    let e=null,n=null;
+    try{e=fe&&fe.of(c.iso)}catch(x){}
+    try{n=f&&f.of(c.iso)}catch(x){}
+    c.en=(e&&e!==c.iso)?e:c.iso;
+    c.name=(n&&n!==c.iso)?n:c.en;
+  });
+  COUNTRIES.sort((a,b)=>a.name.localeCompare(b.name));
+}
+names();
+
+function flagEl(iso,lazy){
+  const i=document.createElement("img");i.className="fl";i.alt="";
+  if(lazy)i.loading="lazy";
+  i.src="https://flagcdn.com/w40/"+iso.toLowerCase()+".png";
+  i.onerror=()=>{const t=document.createElement("span");t.className="fl fb";t.textContent=iso;i.replaceWith(t)};
+  return i;
+}
+
+function makePhone(root,input){
+  const btn=root.querySelector(".ccb"),panel=root.querySelector(".ccp"),s=root.querySelector(".ccs"),
+    ul=root.querySelector(".ccl"),fl=root.querySelector(".ccf"),dc=root.querySelector(".dc");
+  let sel="ET";
+  const close=()=>panel.classList.remove("open");
+  function showSel(){const c=COUNTRIES.find(x=>x.iso===sel);fl.replaceChildren(flagEl(sel,false));dc.textContent="+"+c.dial}
+  function list(){
+    const q=s.value.trim().toLowerCase(),qd=q.replace("+","");
+    const arr=COUNTRIES.filter(c=>!q||c.name.toLowerCase().includes(q)||c.en.toLowerCase().includes(q)||c.iso.toLowerCase()===q||(qd&&c.dial.startsWith(qd)));
+    arr.sort((a,b)=>(b.iso==="ET")-(a.iso==="ET"));
+    ul.replaceChildren();
+    if(!arr.length){const li=document.createElement("li");li.className="none";li.textContent=tr("No results");ul.appendChild(li);return}
+    arr.forEach(c=>{
+      const li=document.createElement("li");if(c.iso===sel)li.className="on";
+      const n=document.createElement("span");n.className="n";n.textContent=c.name;
+      const d=document.createElement("span");d.className="d";d.textContent="+"+c.dial;
+      li.append(flagEl(c.iso,true),n,d);
+      li.onclick=()=>{sel=c.iso;showSel();close();input.focus()};
+      ul.appendChild(li);
+    });
+  }
+  btn.onclick=e=>{e.stopPropagation();
+    if(panel.classList.contains("open")){close();return}
+    document.querySelectorAll(".ccp.open").forEach(p=>p.classList.remove("open"));
+    s.value="";list();panel.classList.add("open");s.focus();};
+  s.oninput=list;
+  panel.onclick=e=>e.stopPropagation();
+  document.addEventListener("click",close);
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+  showSel();
+  return{
+    refresh(){showSel();if(panel.classList.contains("open"))list()},
+    get(){
+      const c=COUNTRIES.find(x=>x.iso===sel);
+      const digits=input.value.replace(/\D/g,"").replace(/^0+/,"");
+      if(digits.length<6||digits.length>14)return null;
+      if(c.dial==="251"&&digits.length!==9)return null;
+      return "+"+c.dial+digits;
+    }
+  };
+}
+const P1=makePhone($("phw"),$("ph")),P2=makePhone($("ephw"),$("ephone"));
+
+/* ---------- language switching ---------- */
+function setLang(l){
+  lang=l;try{localStorage.setItem("lang",l)}catch(e){}
+  document.documentElement.lang=l;
+  document.title=tr("Professional Agent Registration");
+  document.querySelectorAll("[data-t]").forEach(ap);
+  document.querySelectorAll("[data-tp]").forEach(e=>{e.placeholder=tr(e.dataset.tp)});
+  document.querySelectorAll(".lg button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));
+  names();P1.refresh();P2.refresh();
+}
+document.querySelectorAll(".lg button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+
+/* ---------- cameras ---------- */
+const data={idf:null,idb:null,face:null};let fp=false;
+function msg(t,e){$("msg").className=e?"err":"good";$("msg").textContent=t}
+function cam(key){
+  const box=$("c_"+key),v=box.querySelector("video"),c=box.querySelector("canvas"),
+    st=box.querySelector('[data-a=start]'),sn=box.querySelector('[data-a=snap]');let stream;
+  const off=()=>{if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}};
+  st.onclick=async()=>{
+    off();
+    try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:key==="face"?"user":"environment",width:{ideal:1280}}});
+      v.srcObject=stream;await v.play();v.style.display="block";c.style.display="none";sn.disabled=false;setT(st,"Restart");}
+    catch(e){msg(tr("Camera error:")+" "+e.message,1)}};
+  sn.onclick=()=>{
+    const w=Math.min(720,v.videoWidth),h=v.videoHeight*w/v.videoWidth;
+    c.width=w;c.height=h;c.getContext("2d").drawImage(v,0,0,w,h);
+    data[key]=c.toDataURL("image/jpeg",.7);
+    off();v.style.display="none";c.style.display="block";
+    sn.disabled=true;setT(st,"Retake");};
+}
+cam("idf");cam("idb");cam("face");
+
+/* ---------- fingerprint (visual only) ---------- */
+let t0,iv;const pad=$("pad"),bar=$("bar"),fpt=$("fpt");
+const stop=()=>{clearInterval(iv);if(!fp){bar.style.height=0;setT(fpt,"Press and hold for 2 seconds")}};
+pad.onpointerdown=e=>{if(fp)return;t0=Date.now();setT(fpt,"Scanning...");
+  iv=setInterval(()=>{const p=Math.min(1,(Date.now()-t0)/2000);bar.style.height=p*100+"%";
+    if(p>=1){clearInterval(iv);fp=true;setT(fpt,"Fingerprint captured ✓");fpt.classList.add("good");pad.style.borderColor="#16a34a"}},30)};
+pad.onpointerup=pad.onpointerleave=pad.onpointercancel=stop;
+
+/* ---------- submit ---------- */
+const v=id=>$(id).value.trim();
+$("go").onclick=async()=>{
+  const req={fn:"First name",sn:"Second name",ln:"Last name",gender:"Gender",dob:"Date of birth",nat:"Nationality",ph:"Phone number",
+    region:"Region",zone:"Zone / Sub-city",woreda:"Woreda",city:"City / Town",idtype:"ID type",idno:"ID number",
+    prof:"Profession / Occupation",cat:"Agent category",edu:"Education level",exp:"Years of experience",ename:"Full name",ephone:"Phone"};
+  for(const k in req) if(!v(k)) return msg(tr(req[k])+" "+tr("is required."),1);
+  const phone=P1.get(); if(!phone) return msg(tr("Phone number")+" "+tr("is invalid."),1);
+  const ephone=P2.get(); if(!ephone) return msg(tr("Emergency contact")+" — "+tr("Phone")+" "+tr("is invalid."),1);
+  if(!data.idf) return msg(tr("Please capture the FRONT of your ID."),1);
+  if(!data.idb) return msg(tr("Please capture the BACK of your ID."),1);
+  if(!data.face) return msg(tr("Please capture your own picture."),1);
+  if(!fp) return msg(tr("Please complete the fingerprint scan."),1);
+  if(!$("agree").checked) return msg(tr("Please confirm the declaration."),1);
+  $("go").disabled=true;msg(tr("Submitting..."));
+  try{
+    const sql=neon(DB_URL);
+    await sql`CREATE TABLE IF NOT EXISTS registrations(
+      id SERIAL PRIMARY KEY, reg_no TEXT, first_name TEXT, second_name TEXT, last_name TEXT,
+      phone TEXT, id_photo TEXT, face_photo TEXT, fingerprint_status TEXT,
+      created_at TIMESTAMPTZ DEFAULT now())`;
+    for(const col of ["id_back","gender","dob","nationality","email","region","zone_city","woreda","city","address","id_type","id_number",
+      "profession","category","education","experience","languages","emergency_name","emergency_phone"])
+      await sql(`ALTER TABLE registrations ADD COLUMN IF NOT EXISTS ${col} TEXT`);
+    const reg="AG-"+Date.now().toString(36).toUpperCase();
+    await sql`INSERT INTO registrations(reg_no,first_name,second_name,last_name,phone,id_photo,id_back,face_photo,fingerprint_status,
+      gender,dob,nationality,email,region,zone_city,woreda,city,address,id_type,id_number,
+      profession,category,education,experience,languages,emergency_name,emergency_phone)
+      VALUES(${reg},${v("fn")},${v("sn")},${v("ln")},${phone},${data.idf},${data.idb},${data.face},${"Scanned"},
+      ${v("gender")},${v("dob")},${v("nat")},${v("email")},${v("region")},${v("zone")},${v("woreda")},${v("city")},${v("addr")},${v("idtype")},${v("idno")},
+      ${v("prof")},${v("cat")},${v("edu")},${v("exp")},${v("lang")},${v("ename")},${ephone})`;
+    msg(tr("Registered successfully! Your number:")+" "+reg);
+  }catch(e){msg(tr("Failed:")+" "+e.message,1);$("go").disabled=false}
+};
+
+setLang(lang);
+</script></body></html>
